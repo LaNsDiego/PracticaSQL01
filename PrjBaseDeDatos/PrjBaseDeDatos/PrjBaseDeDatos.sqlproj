@@ -76,5 +76,6 @@
     <PostDeploy Include="Scripts\Script.Actividad01.sql" />
     <None Include="Scripts\Script.Actividad02.sql" />
     <None Include="Scripts\Script.Actividad03.sql" />
+    <None Include="Scripts\Script.Actividad04.sql" />
   </ItemGroup>
 </Project>
