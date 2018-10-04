@@ -79,5 +79,7 @@
     <None Include="Scripts\Script.Actividad04.sql" />
     <None Include="Scripts\Script.Actividad05.sql" />
     <None Include="Scripts\Script.Actividad06.sql" />
+    <None Include="Scripts\Script.Actividad07.sql" />
+    <None Include="Scripts\Script.Actividad08.sql" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,74 @@
+﻿/*
+Plantilla de script posterior a la implementación							
+--------------------------------------------------------------------------------------
+ Este archivo contiene instrucciones de SQL que se anexarán al script de compilación.		
+ Use la sintaxis de SQLCMD para incluir un archivo en el script posterior a la implementación.			
+ Ejemplo:      :r .\miArchivo.sql								
+ Use la sintaxis de SQLCMD para hacer referencia a una variable en el script posterior a la implementación.		
+ Ejemplo:      :setvar TableName miTabla							
+               SELECT * FROM [$(TableName)]					
+--------------------------------------------------------------------------------------
+*/
+
+-- 1
+select l.location_id , l.street_address , l.city , l.state_province , c.country_name
+from locations as l
+join countries as c
+on l.country_id = c.country_id;
+
+
+--2
+select e.last_name , d.department_id , d.department_name from employees as e
+left join departments as d
+on e.department_id = d.department_id order by d.department_name;
+
+
+--3
+select e.last_name , e.department_id, j.job title, d.department_name , l.city
+from employees as e
+left join jobs as j
+on e.job_id = j.job_id
+join departments as d
+on e.department_id=d.department_id
+join locations as l
+on d.location_id = l.location_id
+where l.city='Toronto';
+
+--4
+SELECT e.employee_id 'ID Empleado', e.last_name 'Empleado',
+m.employee_id 'ID Manager', m.last_name 'Manager'
+FROM employees e
+join employees m
+ON (e.manager_id = m.employee_id);
+
+--5
+SELECT e.employee_id 'ID Empleado', e.last_name 'Empleado',
+m.employee_id 'ID Manager', m.last_name 'Manager'
+FROM employees e
+left outer join employees m
+ON (e.manager_id = m.employee_id);
+
+--6
+select e.department_id 'DEPARTMENTO', e.last_name 'EMPLEADO',
+d.last_name 'COLEGA'
+from employees e
+join employees d
+on (e.department_id=d.department_id) and e.last_name!=d.last_name;
+
+
+--7
+SELECT e.first_name, e.last_name, e.hire_date
+FROM employees e
+JOIN employees davies
+ON (davies.last_name = 'Davies')
+WHERE davies.hire_date < e.hire_date;
+--8
+select e.last_name 'EMPLEADO', e.hire_date 'FECHA CONTRATACION' , j.last_name 'ADMINISTRADOR',
+j.hire_date 'FECHA CONTRATACION ADMINISTRADOR'
+from employees e
+join employees j
+on e.manager_id=j.employee_id
+and e.hire_date < j.hire_date
+order by e.hire_date;
+
+
